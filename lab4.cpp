@@ -8,7 +8,7 @@ GLuint vaoID,vboID[2],eboID;
 GLuint program;
 
 GLfloat pit,yaw,scalar=1;
-glm::vec3 cubeTran;
+glm::vec3 cubeTran, cameraTran;
 
 GLfloat size=6;
 
@@ -90,13 +90,14 @@ void display(SDL_Window* screen){
 
         glm::mat4 trans;
         /*
-        // trans=glm::translate(trans,cubeTran);
+        trans=glm::translate(trans,cubeTran);
         trans=glm::rotate(trans,pit,glm::vec3(1,0,0));
         trans=glm::rotate(trans,yaw,glm::vec3(0,1,0));
         trans=glm::translate(trans,cubeTran);
         trans=glm::scale(trans,glm::vec3(scalar));
         */
-
+	
+        trans=glm::translate(trans,cameraTran);
         trans=glm::rotate(trans,pit,glm::vec3(1,0,0));
         trans=glm::rotate(trans,yaw,glm::vec3(0,1,0));
         trans=glm::translate(trans,cameraTran);
@@ -135,6 +136,7 @@ SDL_Event event;
         }
 }
 */
+
  while (SDL_PollEvent(&event)){
                 switch (event.type){
                         case SDL_QUIT:exit(0);break;
@@ -155,7 +157,6 @@ SDL_Event event;
                 }
         }
 }
-
 
 
 
@@ -205,5 +206,3 @@ int main(int argc, char **argv){
 
   return 0;
 }
-
-~                    
